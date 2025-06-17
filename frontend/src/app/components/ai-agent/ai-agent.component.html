@@ -1,4 +1,119 @@
-<textarea [(ngModel)]="userInput" rows="5" placeholder="Ask to generate code..."></textarea>
-<button (click)="submitPrompt()">Generate</button>
+<div class="ai-agent-container">
+  <div class="container-fluid py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+          <div class="header-icon mb-3">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h1 class="display-4 fw-bold text-primary mb-3">AI Code Generator</h1>
+          <p class="lead text-muted">Transform your ideas into Python code with the power of AI</p>
+        </div>
 
-<pre>{{ output }}</pre>
+        <!-- Main Content Card -->
+        <div class="card main-card shadow-lg border-0">
+          <div class="card-body p-4 p-md-5">
+            <!-- Input Section -->
+            <div class="input-section mb-4">
+              <label for="codePrompt" class="form-label fw-semibold text-secondary mb-3">
+                <i class="fas fa-edit me-2"></i>Describe what you want to create
+              </label>
+              <div class="input-wrapper">
+                <textarea 
+                  id="codePrompt"
+                  class="form-control custom-textarea" 
+                  [(ngModel)]="userInput" 
+                  rows="4" 
+                  placeholder="Example: Create a function that calculates the fibonacci sequence..."
+                  [disabled]="isGenerating">
+                </textarea>
+                <div class="textarea-footer">
+                  <small class="text-muted">
+                    <i class="fas fa-lightbulb me-1"></i>
+                    Be specific about your requirements for better results
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Generate Button -->
+            <div class="text-center mb-4">
+              <button 
+                class="btn btn-primary btn-lg generate-btn px-5 py-3" 
+                (click)="submitPrompt()"
+                [disabled]="!userInput.trim() || isGenerating">
+                <span *ngIf="!isGenerating">
+                  <i class="fas fa-magic me-2"></i>Generate Code
+                </span>
+                <span *ngIf="isGenerating">
+                  <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  Generating...
+                </span>
+              </button>
+            </div>
+
+            <!-- Output Section -->
+            <div class="output-section" *ngIf="output">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <label class="form-label fw-semibold text-secondary mb-0">
+                  <i class="fas fa-code me-2"></i>Generated Code
+                </label>
+                <button 
+                  class="btn btn-outline-secondary btn-sm copy-btn"
+                  (click)="copyToClipboard()"
+                  title="Copy to clipboard">
+                  <i class="fas fa-copy me-1"></i>Copy
+                </button>
+              </div>
+              
+              <div class="code-wrapper">
+                <pre class="code-output mb-0"><code>{{ output }}</code></pre>
+              </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state text-center py-5" *ngIf="!output">
+              <div class="empty-icon mb-3">
+                <i class="fas fa-code-branch"></i>
+              </div>
+              <h5 class="text-muted mb-2">Ready to Generate</h5>
+              <p class="text-muted">Enter your prompt above and click generate to see the magic happen!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="row mt-5">
+          <div class="col-md-4 mb-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-lightning-bolt"></i>
+              </div>
+              <h6 class="fw-semibold">Fast Generation</h6>
+              <small class="text-muted">Get your code in seconds</small>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h6 class="fw-semibold">AI Powered</h6>
+              <small class="text-muted">Advanced language model</small>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-python"></i>
+              </div>
+              <h6 class="fw-semibold">Python Expert</h6>
+              <small class="text-muted">Specialized in Python code</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

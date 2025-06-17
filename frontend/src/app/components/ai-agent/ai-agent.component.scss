@@ -1,0 +1,301 @@
+// AI Agent Component Styles
+.ai-agent-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  // Header Section
+  .header-icon {
+    i {
+      font-size: 4rem;
+      color: #fff;
+      opacity: 0.9;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  h1 {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .lead {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 1.1rem;
+  }
+
+  // Main Card
+  .main-card {
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+
+  // Input Section
+  .input-section {
+    .form-label {
+      font-size: 1.1rem;
+      color: #495057;
+      
+      i {
+        color: #6c63ff;
+      }
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .custom-textarea {
+      border: 2px solid #e9ecef;
+      border-radius: 15px;
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 1rem 1.25rem;
+      resize: vertical;
+      transition: all 0.3s ease;
+      font-family: 'Courier New', monospace;
+
+      &:focus {
+        border-color: #6c63ff;
+        box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.15);
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        background-color: #f8f9fa;
+        opacity: 0.8;
+      }
+
+      &::placeholder {
+        color: #adb5bd;
+        font-style: italic;
+      }
+    }
+
+    .textarea-footer {
+      margin-top: 0.5rem;
+      padding-left: 0.5rem;
+
+      i {
+        color: #ffc107;
+      }
+    }
+  }
+
+  // Generate Button
+  .generate-btn {
+    background: linear-gradient(45deg, #6c63ff, #5a67d8);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(108, 99, 255, 0.4);
+      background: linear-gradient(45deg, #5a52d5, #4c51bf);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    i {
+      font-size: 1.1rem;
+    }
+  }
+
+  // Output Section
+  .output-section {
+    .form-label {
+      font-size: 1.1rem;
+      color: #495057;
+
+      i {
+        color: #28a745;
+      }
+    }
+
+    .copy-btn {
+      border-radius: 8px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #6c63ff;
+        border-color: #6c63ff;
+        color: white;
+        transform: translateY(-2px);
+      }
+    }
+
+    .code-wrapper {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .code-output {
+      background: linear-gradient(145deg, #1e1e1e, #2d2d30);
+      color: #d4d4d4;
+      padding: 1.5rem;
+      margin: 0;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      border-radius: 15px;
+      border: 1px solid #3e3e42;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+
+      // Custom scrollbar
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #2d2d30;
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #6c63ff;
+        border-radius: 4px;
+
+        &:hover {
+          background: #5a52d5;
+        }
+      }
+
+      code {
+        color: inherit;
+        background: none;
+        padding: 0;
+        font-size: inherit;
+      }
+    }
+  }
+
+  // Empty State
+  .empty-state {
+    .empty-icon {
+      i {
+        font-size: 3rem;
+        color: #dee2e6;
+      }
+    }
+
+    h5, p {
+      color: #6c757d;
+    }
+  }
+
+  // Feature Cards
+  .feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      i {
+        font-size: 2rem;
+        color: #6c63ff;
+      }
+    }
+
+    h6 {
+      color: #495057;
+      margin-bottom: 0.5rem;
+    }
+
+    small {
+      color: #6c757d;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .ai-agent-container {
+    .display-4 {
+      font-size: 2.5rem;
+    }
+
+    .main-card .card-body {
+      padding: 2rem 1.5rem;
+    }
+
+    .generate-btn {
+      padding: 0.75rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    .feature-card {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+// Dark mode support (optional)
+@media (prefers-color-scheme: dark) {
+  .ai-agent-container {
+    .main-card {
+      background: rgba(45, 45, 48, 0.95);
+      color: #e0e0e0;
+    }
+
+    .form-label {
+      color: #b0b0b0 !important;
+    }
+
+    .custom-textarea {
+      background-color: #3e3e42;
+      border-color: #5a5a5e;
+      color: #e0e0e0;
+
+      &::placeholder {
+        color: #888;
+      }
+
+      &:focus {
+        border-color: #6c63ff;
+        background-color: #4a4a4e;
+      }
+    }
+
+    .feature-card {
+      background: rgba(45, 45, 48, 0.9);
+      color: #e0e0e0;
+
+      h6 {
+        color: #d0d0d0 !important;
+      }
+    }
+  }
+}
