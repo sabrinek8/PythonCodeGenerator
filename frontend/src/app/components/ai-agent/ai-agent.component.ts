@@ -12,6 +12,7 @@ export class AiAgentComponent {
   output: string = '';
   renderedMarkdown: SafeHtml = '';
   isGenerating: boolean = false;
+  isImproving: boolean = false;
   hasCodeBlocks: boolean = false;
 
   constructor(
@@ -50,6 +51,25 @@ Please format your response in markdown with:
         this.output = `Error: ${error.message || 'Failed to generate code. Please try again.'}`;
         this.renderMarkdown();
         this.isGenerating = false;
+      }
+    });
+  }
+  improveCode(): void {
+    if (!this.output.trim()) {
+      return;
+    }
+
+    this.isImproving = true;
+
+    this.aiService.improveCode(this.output).subscribe({
+      next: (res) => {
+        this.output = res.output || res.error || 'No improved response received';
+        this.renderMarkdown();
+        this.isImproving = false;
+      },
+      error: (error) => {
+        console.error('Error improving code:', error);
+        this.isImproving = false;
       }
     });
   }

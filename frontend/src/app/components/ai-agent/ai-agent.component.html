@@ -26,7 +26,7 @@
                   [(ngModel)]="userInput" 
                   rows="4" 
                   placeholder="Example: Create a function that calculates the fibonacci sequence with comments and explanation..."
-                  [disabled]="isGenerating">
+                  [disabled]="isGenerating || isImproving">
                 </textarea>
                 <div class="textarea-footer">
                   <small class="text-muted">
@@ -42,7 +42,7 @@
               <button 
                 class="btn btn-primary btn-lg generate-btn px-5 py-3" 
                 (click)="submitPrompt()"
-                [disabled]="!userInput.trim() || isGenerating">
+                [disabled]="!userInput.trim() || isGenerating || isImproving">
                 <span *ngIf="!isGenerating">
                   <i class="fas fa-magic me-2"></i>Generate Code
                 </span>
@@ -60,6 +60,19 @@
                   <i class="fas fa-file-code me-2"></i>Generated Response
                 </label>
                 <div class="output-actions">
+                  <button 
+                    class="btn btn-outline-warning btn-sm me-2 improve-btn"
+                    (click)="improveCode()"
+                    title="Improve this code"
+                    [disabled]="isImproving || isGenerating">
+                    <span *ngIf="!isImproving">
+                      <i class="fas fa-arrow-up me-1"></i>Improve
+                    </span>
+                    <span *ngIf="isImproving">
+                      <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                      Improving...
+                    </span>
+                  </button>
                   <button 
                     class="btn btn-outline-secondary btn-sm me-2 copy-btn"
                     (click)="copyCodeOnly()"
@@ -94,7 +107,7 @@
 
         <!-- Feature Cards -->
         <div class="row mt-5">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <div class="feature-card text-center p-4">
               <div class="feature-icon mb-3">
                 <i class="fas fa-bolt"></i>
@@ -103,7 +116,7 @@
               <small class="text-muted">Get your code in seconds</small>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <div class="feature-card text-center p-4">
               <div class="feature-icon mb-3">
                 <i class="fas fa-brain"></i>
@@ -112,13 +125,22 @@
               <small class="text-muted">Advanced language model</small>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <div class="feature-card text-center p-4">
               <div class="feature-icon mb-3">
                 <i class="fab fa-python"></i>
               </div>
               <h6 class="fw-semibold">Python Expert</h6>
               <small class="text-muted">Specialized in Python code</small>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+              <h6 class="fw-semibold">Code Improvement</h6>
+              <small class="text-muted">Enhance your generated code</small>
             </div>
           </div>
         </div>

@@ -35,3 +35,25 @@ def generate_code(request: PromptRequest):
         return {"output": result}
     except Exception as e:
         return {"error": str(e)}
+    
+    
+@router.post("/improve-code")
+def improve_code(request: PromptRequest):
+    reflection_chat = [
+        {"role": "system", "content": (
+            "You are an expert reviewer. Reflect on the given code response and improve it without changing the goal. "
+            "Return only the improved version."
+        )},
+        {"role": "user", "content": f"Improve this code:\n\n{request.user_input}"}
+    ]
+
+    try:
+        reflection_response = client.chat.completions.create(
+            messages=reflection_chat,
+            model="llama3-70b-8192"
+        )
+        improved_output = reflection_response.choices[0].message.content
+        return {"output": improved_output}
+    except Exception as e:
+        return {"error": str(e)}
+
